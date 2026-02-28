@@ -1,0 +1,7 @@
+# Jupyter notebook support (PyCharm / VS Code / Cursor)
+jupyter
+ipykernel
+ipython
+
+# Full notebook in venv
+notebook
