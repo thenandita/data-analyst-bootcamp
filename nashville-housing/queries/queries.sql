@@ -4,14 +4,13 @@ Cleaning Data in SQL Queries
 
 */
 
-
+-- 1. Select All
 Select *
 From PortfolioProject.dbo.NashvilleHousing
 
 --------------------------------------------------------------------------------------------------------------------------
 
--- Standardize Date Format
-
+-- 2. Standardize Date Format
 
 Select saleDateConverted, CONVERT(Date,SaleDate)
 From PortfolioProject.dbo.NashvilleHousing
@@ -31,7 +30,7 @@ SET SaleDateConverted = CONVERT(Date,SaleDate)
 
  --------------------------------------------------------------------------------------------------------------------------
 
--- Populate Property Address data
+-- 3. Populate Property Address data
 
 Select *
 From PortfolioProject.dbo.NashvilleHousing
@@ -61,7 +60,7 @@ Where a.PropertyAddress is null
 
 --------------------------------------------------------------------------------------------------------------------------
 
--- Breaking out Address into Individual Columns (Address, City, State)
+-- 4. Breaking out Address into Individual Columns (Address, City, State)
 
 
 Select PropertyAddress
@@ -143,7 +142,7 @@ From PortfolioProject.dbo.NashvilleHousing
 --------------------------------------------------------------------------------------------------------------------------
 
 
--- Change Y and N to Yes and No in "Sold as Vacant" field
+-- 5. Change Y and N to Yes and No in "Sold as Vacant" field
 
 
 Select Distinct(SoldAsVacant), Count(SoldAsVacant)
@@ -175,7 +174,7 @@ SET SoldAsVacant = CASE When SoldAsVacant = 'Y' THEN 'Yes'
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- Remove Duplicates
+-- 6. Remove Duplicates
 
 WITH RowNumCTE AS(
 Select *,
@@ -207,7 +206,7 @@ From PortfolioProject.dbo.NashvilleHousing
 
 ---------------------------------------------------------------------------------------------------------
 
--- Delete Unused Columns
+-- 7. Delete Unused Columns
 
 
 
@@ -235,7 +234,7 @@ DROP COLUMN OwnerAddress, TaxDistrict, PropertyAddress, SaleDate
 -----------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------
 
---- Importing Data using OPENROWSET and BULK INSERT	
+-- 8. Importing Data using OPENROWSET and BULK INSERT	
 
 --  More advanced and looks cooler, but have to configure server appropriately to do correctly
 --  Wanted to provide this in case you wanted to try it
